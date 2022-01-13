@@ -107,3 +107,14 @@ sys_trace(void)
 
   return 0;
 }
+
+uint64
+sys_sysinfo(void)
+{
+  uint64 info; // user pointer to struct sysinfo
+
+  if (argaddr(0, &info) < 0)
+    return -1;
+
+  return systeminfo(info);
+}
